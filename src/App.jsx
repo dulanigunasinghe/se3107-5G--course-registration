@@ -1,158 +1,60 @@
-
 import { useState } from "react";
 
+//import Registration from "./pages/registration.jsx";
+import StudentProfile_23CSE0816 from "./pages/StudentProfile_23CSE0816.jsx";
+// import StudentProfile2 from "./pages/StudentProfile_2";
+// import StudentProfile3 from "./pages/StudentProfile_3";
+// import StudentProfile4 from "./pages/StudentProfile_4";
+
+//import "./App.css";
+
 function App() {
-  const [studentName, setStudentName] = useState("");
-  const [studentId, setStudentId] = useState("");
-  const [courseName, setCourseName] = useState("");
+  const [currentPage, setCurrentPage] = useState("home");
 
-  function handleSubmit(event) {
-    event.preventDefault();
-  }
+  const renderPage = () => {
+    switch (currentPage) {
+      case "profile1":
+        return <StudentProfile_23CSE0816 />;
 
-  const wrapperStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    minHeight: "100vh",
-    backgroundColor: "#0f172a",
-    padding: "20px",
-    boxSizing: "border-box"
-  };
+      // case "profile2":
+      //   return <StudentProfile2 />;
 
-  const cardStyle = {
-    width: "100%",
-    maxWidth: "600px",
-    padding: "40px",
-    backgroundColor: "#1e293b",
-    borderRadius: "16px",
-    color: "#f8fafc",
-    fontFamily: "system-ui, sans-serif",
-    boxShadow: "0 20px 25px -5px rgba(0,0,0,0.4)",
-    boxSizing: "border-box"
-  };
+      // case "profile3":
+      //   return <StudentProfile3 />;
 
-  const formRowStyle = {
-    display: "grid",
-    gridTemplateColumns: "120px 1fr",
-    alignItems: "center",
-    gap: "15px",
-    marginBottom: "24px"
-  };
+      // case "profile4":
+      //   return <StudentProfile4 />;
 
-  const labelStyle = {
-    fontSize: "15px",
-    color: "#94a3b8",
-    fontWeight: "500"
-  };
-
-  const inputStyle = {
-    width: "100%",
-    padding: "14px 16px",
-    backgroundColor: "#334155",
-    border: "1px solid #475569",
-    borderRadius: "8px",
-    color: "#fff",
-    fontSize: "16px",
-    boxSizing: "border-box",
-    outline: "none"
-  };
-
-  const buttonStyle = {
-    width: "100%",
-    padding: "14px",
-    backgroundColor: "#2563eb",
-    color: "#fff",
-    border: "none",
-    borderRadius: "8px",
-    fontSize: "16px",
-    fontWeight: "600",
-    cursor: "pointer",
-    marginTop: "12px"
+      //default:
+       // return <Registration />;
+    }
   };
 
   return (
-    <div style={wrapperStyle}>
-      <div style={cardStyle}>
+    <div>
+      <nav className="navigation">
+        <button onClick={() => setCurrentPage("home")}>
+          Registration
+        </button>
 
-        <h1 style={{
-          fontSize: "26px",
-          textAlign: "center",
-          marginTop: 0,
-          marginBottom: "40px",
-          color: "#fff",
-          fontWeight: "700"
-        }}>
-          University Course Registration System
-        </h1>
+        <button onClick={() => setCurrentPage("profile1")}>
+          Student 1
+        </button>
 
-        <form onSubmit={handleSubmit}>
+        <button onClick={() => setCurrentPage("profile2")}>
+          Student 2
+        </button>
 
-          {/* Student Name */}
-          <div style={formRowStyle}>
-            <label style={labelStyle}>
-              Student Name
-            </label>
+        <button onClick={() => setCurrentPage("profile3")}>
+          Student 3
+        </button>
 
-            <input
-              type="text"
-              style={inputStyle}
-              value={studentName}
-              onChange={(e) => setStudentName(e.target.value)}
-              placeholder="Enter Student Name"
-              required
-            />
-          </div>
+        <button onClick={() => setCurrentPage("profile4")}>
+          Student 4
+        </button>
+      </nav>
 
-          {/* Student ID */}
-          <div style={formRowStyle}>
-            <label style={labelStyle}>
-              Student ID
-            </label>
-
-            <input
-              type="text"
-              style={inputStyle}
-              value={studentId}
-              onChange={(e) => setStudentId(e.target.value)}
-              placeholder="Enter Student ID"
-              required
-            />
-          </div>
-
-          {/* Course Name */}
-          <div style={formRowStyle}>
-            <label style={labelStyle}>
-              Course Name
-            </label>
-
-            <input
-              type="text"
-              style={inputStyle}
-              value={courseName}
-              onChange={(e) => setCourseName(e.target.value)}
-              placeholder="Enter Course Name"
-              required
-            />
-          </div>
-
-          {/* Register Button */}
-          <button
-            type="submit"
-            style={buttonStyle}
-            onMouseOver={(e) =>
-              e.target.style.backgroundColor = "#1d4ed8"
-            }
-            onMouseOut={(e) =>
-              e.target.style.backgroundColor = "#2563eb"
-            }
-          >
-            Register
-          </button>
-
-        </form>
-
-      </div>
+      {renderPage()}
     </div>
   );
 }
